@@ -949,58 +949,6 @@ of Style calls this "headline style")</a:documentation>
         </attribute>
       </optional>
     </define>
-    <define name="variables.strings" combine="choice">
-      <a:documentation>standard variables</a:documentation>
-      <choice>
-        <value>abstract</value>
-        <value>annote</value>
-        <value>archive</value>
-        <value>archive_location</value>
-        <value>archive-place</value>
-        <value>citation-label</value>
-        <value>citation-number</value>
-        <value>collection-title</value>
-        <value>container-title</value>
-        <value>container-title-short</value>
-        <value>country</value>
-        <value>dimensions</value>
-        <value>DOI</value>
-        <value>event</value>
-        <value>event-place</value>
-        <value>first-reference-note-number</value>
-        <value>first-container-reference-note-number</value>
-        <value>genre</value>
-        <value>hereinafter</value>
-        <value>ISBN</value>
-        <value>ISSN</value>
-        <value>jurisdiction</value>
-        <value>keyword</value>
-        <value>locator</value>
-        <value>medium</value>
-        <value>note</value>
-        <value>original-publisher</value>
-        <value>original-publisher-place</value>
-        <value>original-title</value>
-        <value>PMID</value>
-        <value>PMCID</value>
-        <value>publisher</value>
-        <value>publisher-place</value>
-        <value>references</value>
-        <value>reviewed-title</value>
-        <value>scale</value>
-        <value>section</value>
-        <value>source</value>
-        <value>status</value>
-        <value>title</value>
-        <value>title-short</value>
-        <value>title-main</value>
-        <value>title-sub</value>
-        <value>URL</value>
-        <value>version</value>
-        <value>volume-title</value>
-        <value>year-suffix</value>
-      </choice>
-    </define>
     <define name="independent-style.style.info">
       <element name="cs:info">
         <ref name="info.title"/>
