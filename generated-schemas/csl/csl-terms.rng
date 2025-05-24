@@ -8,6 +8,7 @@
         <ref name="terms.gender-variants"/>
         <ref name="terms.locator"/>
         <ref name="item-types"/>
+        <value>citation-range-delimiter</value>
         <ref name="variables.names">
           <a:documentation>Contributor roles</a:documentation>
         </ref>
