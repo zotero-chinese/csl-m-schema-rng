@@ -7,11 +7,7 @@
   <dc:description>Extends the official CSL schema for use with Multilingual Zotero.</dc:description>
   <include href="csl-jurisdictions.rng"/>
   <include href="csl-repository.rng">
-    <define name="version">
-      <attribute name="version">
-        <value>1.1mlz1</value>
-      </attribute>
-    </define>
+    <!-- version = attribute version { "1.1mlz1" } -->
     <define name="locale.style-options">
       <a:documentation>Add "skip-words" attribute</a:documentation>
       <element name="cs:style-options">
@@ -140,6 +136,8 @@ or outside (default) the closing quotation mark.</a:documentation>
         <ref name="terms.gender-assignable"/>
         <ref name="terms.gender-variants"/>
         <ref name="terms.locator"/>
+        <ref name="item-types"/>
+        <value>citation-range-delimiter</value>
         <ref name="variables.names">
           <a:documentation>Contributor roles</a:documentation>
         </ref>
@@ -355,7 +353,7 @@ Allow "leading-noise-words" attribute to accompany "variable" on cs:text</a:docu
         <group>
           <attribute name="variable">
             <a:documentation>Select a variable.</a:documentation>
-            <ref name="variables.strings"/>
+            <ref name="variables.standard"/>
           </attribute>
           <optional>
             <attribute name="form" a:defaultValue="long">
@@ -951,7 +949,7 @@ of Style calls this "headline style")</a:documentation>
         </attribute>
       </optional>
     </define>
-    <define name="variables.strings">
+    <define name="variables.strings" combine="choice">
       <a:documentation>standard variables</a:documentation>
       <choice>
         <value>abstract</value>
