@@ -16,6 +16,12 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Apply patch to submodule
+        run: |
+          cd csl-m-schema
+          git apply ../patches/csl-mlz.rnc.patch
+          cd ..
+
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
