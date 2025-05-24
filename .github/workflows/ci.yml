@@ -27,20 +27,41 @@ jobs:
           mkdir -p tools
           wget https://repo1.maven.org/maven2/com/thaiopensource/trang/20091111/trang-20091111.jar -O tools/trang.jar
 
-      - name: Convert RNC files to RNG into generated-schemas/
+      # - name: Convert RNC files to RNG into generated-schemas/
+      #   run: |
+      #     mkdir -p generated-schemas
+      #     find csl-m-schema -name "*.rnc" | while read rnc; do
+      #       # Compute the relative path inside csl-m-schema
+      #       relpath="${rnc#csl-m-schema/}"
+      #       # Create corresponding directory in output
+      #       outdir="generated-schemas/$(dirname "$relpath")"
+      #       mkdir -p "$outdir"
+      #       # Build target RNG path
+      #       rng="$outdir/$(basename "${relpath%.rnc}.rng")"
+      #       echo "Converting $rnc -> $rng"
+      #       java -jar tools/trang.jar "$rnc" "$rng"
+      #     done
+      - name: Convert csl-m-schema
         run: |
-          mkdir -p generated-schemas
-          find csl-m-schema -name "*.rnc" | while read rnc; do
-            # Compute the relative path inside csl-m-schema
-            relpath="${rnc#csl-m-schema/}"
-            # Create corresponding directory in output
-            outdir="generated-schemas/$(dirname "$relpath")"
-            mkdir -p "$outdir"
-            # Build target RNG path
-            rng="$outdir/$(basename "${relpath%.rnc}.rng")"
-            echo "Converting $rnc -> $rng"
-            java -jar tools/trang.jar "$rnc" "$rng"
+          mkdir -p generated-schemas/csl-m
+          find csl-m-schema -maxdepth 1 -name "*.rnc" | while read -r file; do
+            base=$(basename "$file" .rnc)
+            java -jar trang.jar "$file" "generated-schemas/csl-m/$base.rng"
           done
+
+      - name: Convert csl-schema
+        run: |
+          mkdir -p generated-schemas/csl
+          find csl-schema/schemas/styles -name "*.rnc" | while read -r file; do
+            base=$(basename "$file" .rnc)
+            java -jar trang.jar "$file" "generated-schemas/csl/$base.rng"
+          done
+
+      - name: Merge generated schemas
+        run: |
+          mkdir -p generated-schemas/merged
+          cp -r generated-schemas/csl-m/*.rng generated-schemas/merged || true
+          cp -r generated-schemas/csl/*.rng generated-schemas/merged
 
       - name: Commit and push generated RNG files
         run: |
