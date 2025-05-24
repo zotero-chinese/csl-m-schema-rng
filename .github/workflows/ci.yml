@@ -1,0 +1,57 @@
+name: Convert RNC to RNG
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Download trang tool
+        run: |
+          mkdir -p tools
+          wget https://repo1.maven.org/maven2/com/thaiopensource/trang/20091111/trang-20091111.jar -O tools/trang.jar
+
+      - name: Convert RNC files to RNG into generated-schemas/
+        run: |
+          mkdir -p generated-schemas
+          find csl-m-schema -name "*.rnc" | while read rnc; do
+            # Compute the relative path inside csl-m-schema
+            relpath="${rnc#csl-m-schema/}"
+            # Create corresponding directory in output
+            outdir="generated-schemas/$(dirname "$relpath")"
+            mkdir -p "$outdir"
+            # Build target RNG path
+            rng="$outdir/$(basename "${relpath%.rnc}.rng")"
+            echo "Converting $rnc -> $rng"
+            java -jar tools/trang.jar "$rnc" "$rng"
+          done
+
+      - name: Commit and push generated RNG files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add generated-schemas/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-convert RNC to RNG in generated-schemas/"
+            git push
+          fi

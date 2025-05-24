@@ -1,0 +1,3 @@
+[submodule "csl-m-schema"]
+	path = csl-m-schema
+	url = git@github.com:Juris-M/schema.git
