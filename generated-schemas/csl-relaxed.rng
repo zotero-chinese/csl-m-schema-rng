@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:cs="http://purl.org/net/xbiblio/csl" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <dc:title>Citation Style Language Schema - Relaxed</dc:title>
+  <dc:creator>Bruce D'Arcus</dc:creator>
+  <dc:rights>Permission to freely use, copy and distribute.</dc:rights>
+  <dc:description>Relaxes the need for a cs:updated value in the official CSL schema.</dc:description>
+  <include href="csl.rng">
+    <define name="info-updated">
+      <element name="cs:updated">
+        <optional>
+          <data type="dateTime"/>
+        </optional>
+      </element>
+    </define>
+  </include>
+</grammar>
