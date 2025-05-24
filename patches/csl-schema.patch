@@ -1,12 +1,12 @@
 diff --git a/schemas/styles/csl-terms.rnc b/schemas/styles/csl-terms.rnc
-index 93f3fc5..3f61c0c 100644
+index 93f3fc5..3a6e24f 100644
 --- a/schemas/styles/csl-terms.rnc
 +++ b/schemas/styles/csl-terms.rnc
 @@ -8,6 +8,8 @@ div {
      | terms.gender-variants
      | terms.locator
      | item-types
-+    |
++
 +    | "citation-range-delimiter"
      | 
        ## Contributor roles
