@@ -214,76 +214,39 @@ rendered and their formatting.</a:documentation>
         </choice>
       </element>
     </define>
-    <define name="text.attributes">
+    <define name="number.attributes">
       <a:documentation>Allow "label-form" attribute to accompany "macro" on cs:text
 Allow "leading-noise-words" attribute to accompany "variable" on cs:text</a:documentation>
-      <choice>
-        <group>
-          <attribute name="macro">
-            <a:documentation>Select a macro.</a:documentation>
-            <data type="NMTOKEN"/>
-          </attribute>
-          <optional>
-            <attribute name="label-form">
-              <ref name="term.form"/>
-            </attribute>
-          </optional>
-          <optional>
-            <attribute name="label-capitalize-if-first" a:defaultValue="false">
-              <data type="boolean"/>
-            </attribute>
-          </optional>
-        </group>
-        <group>
-          <attribute name="term">
-            <a:documentation>Select a term.</a:documentation>
-            <ref name="terms"/>
-          </attribute>
-          <optional>
-            <attribute name="form" a:defaultValue="long">
-              <ref name="term.form"/>
-            </attribute>
-          </optional>
-          <optional>
-            <attribute name="plural" a:defaultValue="false">
-              <a:documentation>Specify term plurality: singular ("false") or plural ("true").</a:documentation>
-              <data type="boolean"/>
-            </attribute>
-          </optional>
-          <ref name="use-default-locale">
-            <a:documentation>Force use of the style default locale for the term</a:documentation>
-          </ref>
-        </group>
-        <attribute name="value">
-          <a:documentation>Specify verbatim text.</a:documentation>
-        </attribute>
-        <group>
-          <attribute name="variable">
-            <a:documentation>Select a variable.</a:documentation>
-            <ref name="variables.standard"/>
-          </attribute>
-          <optional>
-            <attribute name="form" a:defaultValue="long">
-              <a:documentation>Form of the variable</a:documentation>
-              <choice>
-                <value>short</value>
-                <value>long</value>
-              </choice>
-            </attribute>
-          </optional>
-          <optional>
-            <attribute name="leading-noise-words">
-              <a:documentation>What to do with leading noise words</a:documentation>
-              <choice>
-                <value>drop</value>
-                <value>demote</value>
-              </choice>
-            </attribute>
-          </optional>
-        </group>
-      </choice>
-    </define>
-    <define name="number.attributes">
+      <!--
+        text.attributes =
+          (
+           ## Select a macro.
+           attribute macro { xsd:NMTOKEN },
+           attribute label-form { term.form }?,
+           [a:defaultValue = "false" ] attribute label-capitalize-if-first { xsd:boolean }?)
+          | (
+             ## Select a term.
+             attribute term { terms },
+             [ a:defaultValue = "long" ] attribute form { term.form }?,
+      -->
+      <!--
+             ## Specify term plurality: singular ("false") or plural ("true").
+             [ a:defaultValue = "false" ] attribute plural { xsd:boolean }?,
+      -->
+      <!--
+             ## Force use of the style default locale for the term
+             use-default-locale)
+          | 
+            ## Specify verbatim text.
+            attribute value { text }
+          | (
+             ## Select a variable.
+             attribute variable { variables.standard  },
+             ## Form of the variable
+             [ a:defaultValue = "long" ] attribute form { "short" | "long" }?,
+             ## What to do with leading noise words
+             attribute leading-noise-words { "drop" | "demote" }?)
+      -->
       <a:documentation>Allow "locator" variable on, add "label-form" attribute to cs:number</a:documentation>
       <attribute name="variable">
         <choice>
@@ -457,49 +420,6 @@ or at or below a max value</a:documentation>
           <data type="integer"/>
         </attribute>
       </optional>
-    </define>
-    <define name="label.attributes-shared">
-      <a:documentation>Drop affixes</a:documentation>
-      <optional>
-        <attribute name="plural" a:defaultValue="contextual">
-          <a:documentation>Specify when the plural version of a term is selected.</a:documentation>
-          <choice>
-            <value>always</value>
-            <value>never</value>
-            <value>contextual</value>
-          </choice>
-        </attribute>
-      </optional>
-      <ref name="font-formatting"/>
-      <ref name="strip-periods"/>
-      <ref name="text-case"/>
-    </define>
-    <define name="label.attributes">
-      <a:documentation>Add back affixes (removed from label.attributes-shared)</a:documentation>
-      <attribute name="variable">
-        <choice>
-          <ref name="variables.numbers"/>
-          <value>locator</value>
-          <value>page</value>
-        </choice>
-      </attribute>
-      <optional>
-        <attribute name="form" a:defaultValue="long">
-          <choice>
-            <value>long</value>
-            <value>short</value>
-            <value>symbol</value>
-            <value>static</value>
-          </choice>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="capitalize-if-first" a:defaultValue="false">
-          <data type="boolean"/>
-        </attribute>
-      </optional>
-      <ref name="use-default-locale"/>
-      <ref name="affixes"/>
     </define>
     <define name="group.attributes">
       <a:documentation>Add "is-parallel", "quotes", "subgroup-delimiter",
@@ -817,18 +737,6 @@ argument represents a space character.</a:documentation>
           <data type="integer"/>
         </attribute>
       </choice>
-    </define>
-    <define name="affixes">
-      <optional>
-        <attribute name="prefix" a:defaultValue="">
-          <ref name="string-no-leading-space"/>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="suffix" a:defaultValue="">
-          <ref name="string-no-trailing-space"/>
-        </attribute>
-      </optional>
     </define>
     <define name="text-case">
       <a:documentation>Add "normal" value on text-case attribute</a:documentation>

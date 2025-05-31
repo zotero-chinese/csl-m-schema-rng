@@ -138,11 +138,17 @@ text content for cs:rights</a:documentation>
       <element name="cs:et-al">
         <a:documentation>Specify the term used for et-al abbreviation and its formatting. </a:documentation>
         <optional>
-          <attribute name="term" a:defaultValue="et-al">
+          <attribute a:defaultValue="et-al">
             <a:documentation>Select the term to use for et-al abbreviation.</a:documentation>
+            <!--
+              zotero-chinese/styles 自定义的术语
+              国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
+            -->
+            <name ns="">term</name>
             <choice>
               <value>et-al</value>
               <value>and others</value>
+              <value>space-et-al</value>
             </choice>
           </attribute>
         </optional>

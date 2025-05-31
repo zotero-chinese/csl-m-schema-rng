@@ -1,5 +1,5 @@
 diff --git a/csl-mlz.rnc b/csl-mlz.rnc
-index b59537e..3d56b9a 100644
+index b59537e..72a69c2 100644
 --- a/csl-mlz.rnc
 +++ b/csl-mlz.rnc
 @@ -16,7 +16,7 @@ dc:description [
@@ -101,16 +101,105 @@ index b59537e..3d56b9a 100644
    
    ## Replace affixes by affixes-date on cs:date-part
    rendering-element.date.date-part.non-localized =
-@@ -247,7 +171,7 @@ rendering-element.date =
-       attribute value { text }
-     | (
-        ## Select a variable.
+@@ -226,32 +150,32 @@ rendering-element.date =
+   
+   ## Allow "label-form" attribute to accompany "macro" on cs:text
+   ## Allow "leading-noise-words" attribute to accompany "variable" on cs:text
+-  text.attributes =
+-    (
+-     ## Select a macro.
+-     attribute macro { xsd:NMTOKEN },
+-     attribute label-form { term.form }?,
+-     [a:defaultValue = "false" ] attribute label-capitalize-if-first { xsd:boolean }?)
+-    | (
+-       ## Select a term.
+-       attribute term { terms },
+-       [ a:defaultValue = "long" ] attribute form { term.form }?,
++  # text.attributes =
++  #   (
++  #    ## Select a macro.
++  #    attribute macro { xsd:NMTOKEN },
++  #    attribute label-form { term.form }?,
++  #    [a:defaultValue = "false" ] attribute label-capitalize-if-first { xsd:boolean }?)
++  #   | (
++  #      ## Select a term.
++  #      attribute term { terms },
++  #      [ a:defaultValue = "long" ] attribute form { term.form }?,
+        
+-       ## Specify term plurality: singular ("false") or plural ("true").
+-       [ a:defaultValue = "false" ] attribute plural { xsd:boolean }?,
+-
+-       ## Force use of the style default locale for the term
+-       use-default-locale)
+-    | 
+-      ## Specify verbatim text.
+-      attribute value { text }
+-    | (
+-       ## Select a variable.
 -       attribute variable { variables.strings },
-+       attribute variable { variables.standard  },
-        ## Form of the variable
-        [ a:defaultValue = "long" ] attribute form { "short" | "long" }?,
-        ## What to do with leading noise words
-@@ -621,56 +545,6 @@ rendering-element.date =
+-       ## Form of the variable
+-       [ a:defaultValue = "long" ] attribute form { "short" | "long" }?,
+-       ## What to do with leading noise words
+-       attribute leading-noise-words { "drop" | "demote" }?)
++  #      ## Specify term plurality: singular ("false") or plural ("true").
++  #      [ a:defaultValue = "false" ] attribute plural { xsd:boolean }?,
++
++  #      ## Force use of the style default locale for the term
++  #      use-default-locale)
++  #   | 
++  #     ## Specify verbatim text.
++  #     attribute value { text }
++  #   | (
++  #      ## Select a variable.
++  #      attribute variable { variables.standard  },
++  #      ## Form of the variable
++  #      [ a:defaultValue = "long" ] attribute form { "short" | "long" }?,
++  #      ## What to do with leading noise words
++  #      attribute leading-noise-words { "drop" | "demote" }?)
+        
+   ## Allow "locator" variable on, add "label-form" attribute to cs:number
+   number.attributes =
+@@ -374,26 +298,6 @@ rendering-element.date =
+     ## or at or below a max value
+     attribute suppress-min { xsd:integer }?,
+     attribute suppress-max { xsd:integer }?
+-
+-  ## Drop affixes
+-  label.attributes-shared =
+-    
+-    ## Specify when the plural version of a term is selected.
+-    [ a:defaultValue = "contextual" ]
+-    attribute plural { "always" | "never" | "contextual" }?,
+-    font-formatting,
+-    strip-periods,
+-    text-case
+-  
+-  ## Add back affixes (removed from label.attributes-shared)
+-  label.attributes =
+-    attribute variable { variables.numbers | "locator" | "page" },
+-    [ a:defaultValue = "long" ]
+-    attribute form { "long" | "short" | "symbol" | "static" }?,
+-    [ a:defaultValue = "false" ]
+-    attribute capitalize-if-first { xsd:boolean }?,
+-    use-default-locale,
+-    affixes
+   
+   ## Add "is-parallel", "quotes", "subgroup-delimiter",
+   ## "subgroup-delimiter-precedes-last", attribute on cs:group
+@@ -586,11 +490,7 @@ rendering-element.date =
+         xsd:integer
+       }
+ 
+-  affixes =
+-    [ a:defaultValue = "" ]
+-    attribute prefix { string-no-leading-space }?,
+-    [ a:defaultValue = "" ]
+-    attribute suffix { string-no-trailing-space }?
++
+   
+   ## Add "normal" value on text-case attribute
+   text-case =
+@@ -621,56 +521,6 @@ rendering-element.date =
          "normal"
      }?
    

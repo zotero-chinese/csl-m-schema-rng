@@ -1,3 +1,18 @@
+diff --git a/schemas/styles/csl-repository.rnc b/schemas/styles/csl-repository.rnc
+index 5a961df..2f75bfe 100644
+--- a/schemas/styles/csl-repository.rnc
++++ b/schemas/styles/csl-repository.rnc
+@@ -102,7 +102,9 @@ include "csl.rnc" {
+       
+       ## Select the term to use for et-al abbreviation.
+       [ a:defaultValue = "et-al" ]
+-      attribute term { "et-al" | "and others" }?,
++      # zotero-chinese/styles 自定义的术语
++      # 国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
++      attribute term { "et-al" | "and others" | "space-et-al" }?,
+       font-formatting
+     }
+ }
 diff --git a/schemas/styles/csl-terms.rnc b/schemas/styles/csl-terms.rnc
 index 93f3fc5..1d373c8 100644
 --- a/schemas/styles/csl-terms.rnc
@@ -20,16 +35,17 @@ index 93f3fc5..1d373c8 100644
        ## Contributor roles
        variables.names
 diff --git a/schemas/styles/csl.rnc b/schemas/styles/csl.rnc
-index c768055..8d6f3fb 100644
+index c768055..7dfbbf6 100644
 --- a/schemas/styles/csl.rnc
 +++ b/schemas/styles/csl.rnc
-@@ -363,6 +363,9 @@ div {
+@@ -362,7 +362,9 @@ div {
+   rendering-element.names =
      element cs:names {
        names.attributes,
-       ((names.name?, names.et-al?) & names.label?),
+-      ((names.name?, names.et-al?) & names.label?),
 +      ## Allow cs:institution element as child element of cs:names, add
 +      ## name-label-before, name-label-after
-+      names.institution?,
++      ((names.name?, names.et-al?) & names.label? & names.institution?),
        names.substitute?
      }
    names.attributes =

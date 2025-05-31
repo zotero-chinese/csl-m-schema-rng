@@ -650,6 +650,8 @@ or outside (default) the closing quotation mark.</a:documentation>
       <element name="cs:names">
         <ref name="names.attributes"/>
         <interleave>
+          <a:documentation>Allow cs:institution element as child element of cs:names, add
+name-label-before, name-label-after</a:documentation>
           <group>
             <optional>
               <ref name="names.name"/>
@@ -661,13 +663,10 @@ or outside (default) the closing quotation mark.</a:documentation>
           <optional>
             <ref name="names.label"/>
           </optional>
+          <optional>
+            <ref name="names.institution"/>
+          </optional>
         </interleave>
-        <optional>
-          <ref name="names.institution">
-            <a:documentation>Allow cs:institution element as child element of cs:names, add
-name-label-before, name-label-after</a:documentation>
-          </ref>
-        </optional>
         <optional>
           <ref name="names.substitute"/>
         </optional>
