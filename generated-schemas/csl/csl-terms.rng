@@ -8,7 +8,17 @@
         <ref name="terms.gender-variants"/>
         <ref name="terms.locator"/>
         <ref name="item-types"/>
+        <!--
+          顺序编码制引注中的连接符
+          未在 CSL 和 CSL-M 规范中定义，但存在于 citeproc-js 中
+          https://github.com/zotero-chinese/styles/discussions/439
+        -->
         <value>citation-range-delimiter</value>
+        <!--
+          zotero-chinese/styles 自定义的术语
+          国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
+        -->
+        <value>space-et-al</value>
         <ref name="variables.names">
           <a:documentation>Contributor roles</a:documentation>
         </ref>

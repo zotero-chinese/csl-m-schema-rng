@@ -1,13 +1,35 @@
 diff --git a/schemas/styles/csl-terms.rnc b/schemas/styles/csl-terms.rnc
-index 93f3fc5..3a6e24f 100644
+index 93f3fc5..1d373c8 100644
 --- a/schemas/styles/csl-terms.rnc
 +++ b/schemas/styles/csl-terms.rnc
-@@ -8,6 +8,8 @@ div {
+@@ -8,6 +8,16 @@ div {
      | terms.gender-variants
      | terms.locator
      | item-types
 +
++    # 顺序编码制引注中的连接符
++    # 未在 CSL 和 CSL-M 规范中定义，但存在于 citeproc-js 中
++    # https://github.com/zotero-chinese/styles/discussions/439
 +    | "citation-range-delimiter"
++
++    # zotero-chinese/styles 自定义的术语
++    # 国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
++    | "space-et-al"
++
      | 
        ## Contributor roles
        variables.names
+diff --git a/schemas/styles/csl.rnc b/schemas/styles/csl.rnc
+index c768055..8d6f3fb 100644
+--- a/schemas/styles/csl.rnc
++++ b/schemas/styles/csl.rnc
+@@ -363,6 +363,9 @@ div {
+     element cs:names {
+       names.attributes,
+       ((names.name?, names.et-al?) & names.label?),
++      ## Allow cs:institution element as child element of cs:names, add
++      ## name-label-before, name-label-after
++      names.institution?,
+       names.substitute?
+     }
+   names.attributes =

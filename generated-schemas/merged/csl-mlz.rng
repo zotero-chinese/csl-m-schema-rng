@@ -199,38 +199,6 @@ or outside (default) the closing quotation mark.</a:documentation>
         <ref name="else-if-complex"/>
       </choice>
     </define>
-    <define name="rendering-element.names">
-      <a:documentation>Allow cs:institution element as child element of cs:names, add
-name-label-before, name-label-after</a:documentation>
-      <element name="cs:names">
-        <ref name="names.attributes"/>
-        <optional>
-          <attribute name="require-match">
-            <data type="boolean"/>
-          </attribute>
-        </optional>
-        <group>
-          <optional>
-            <ref name="names.label-before"/>
-          </optional>
-          <optional>
-            <ref name="names.name"/>
-          </optional>
-          <optional>
-            <ref name="names.et-al"/>
-          </optional>
-          <optional>
-            <ref name="names.institution"/>
-          </optional>
-          <optional>
-            <ref name="names.label-after"/>
-          </optional>
-        </group>
-        <optional>
-          <ref name="names.substitute"/>
-        </optional>
-      </element>
-    </define>
     <define name="rendering-element.date.date-part.non-localized">
       <a:documentation>Replace affixes by affixes-date on cs:date-part</a:documentation>
       <element name="cs:date-part">

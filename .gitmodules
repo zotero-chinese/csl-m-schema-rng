@@ -1,6 +1,8 @@
 [submodule "csl-m-schema"]
 	path = csl-m-schema
 	url = git@github.com:Juris-M/schema.git
+	ignore = dirty
 [submodule "csl-schema"]
 	path = csl-schema
 	url = https://github.com/citation-style-language/schema.git
+	ignore = dirty

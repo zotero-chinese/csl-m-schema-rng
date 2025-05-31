@@ -663,6 +663,12 @@ or outside (default) the closing quotation mark.</a:documentation>
           </optional>
         </interleave>
         <optional>
+          <ref name="names.institution">
+            <a:documentation>Allow cs:institution element as child element of cs:names, add
+name-label-before, name-label-after</a:documentation>
+          </ref>
+        </optional>
+        <optional>
           <ref name="names.substitute"/>
         </optional>
       </element>

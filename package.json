@@ -1,0 +1,31 @@
+{
+  "name": "csl-m-schema-rng",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "pnpm convert && pnpm save-patch",
+    "convert": "bash scripts/convert.sh",
+    "save-patch": "bash scripts/save-patch.sh",
+    "apply-patch": "bash scripts/apply-patch.sh",
+    "postinstall": "pnpm apply-patch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "nodemonConfig": {
+    "ext": "*.rnc",
+    "ignore": [
+      "patches/*",
+      "generated-schemas/*",
+      "tools/*"
+    ],
+    "exec": "pnpm build"
+  }
+}
