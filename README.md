@@ -24,6 +24,29 @@ This repository automatically converts [CSL schema](https://github.com/citation-
 
 ## 💡 Using `.rng` Schemas in VS Code
 
+### Method 1: use npm
+
+Add package:
+
+```bash
+pnpm add -D https://github.com/zotero-chinese/csl-m-schema-rng.git
+```
+
+VS Code settings (`.vscode/settings.json`):
+
+```json5
+{
+    "xml.fileAssociations": [
+    {
+      "pattern": "**/*.csl",
+      "systemId": "${workspaceFolder}/node_modules/@zotero-chinese/csl-m-schema-rng/generated-schemas/merged/csl-mlz.rng"
+    }
+  ],
+}
+```
+
+### Method 2: use git submodule
+
 Add the submodule:
 
 ```bash
