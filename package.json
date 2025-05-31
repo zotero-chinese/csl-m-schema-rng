@@ -1,8 +1,7 @@
 {
-  "name": "csl-m-schema-rng",
+  "name": "@zotero-chinese/csl-m-schema-rng",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Zotero 中文社区修改的 CSL Schema",
   "scripts": {
     "dev": "nodemon",
     "build": "pnpm convert && pnpm save-patch",
@@ -13,9 +12,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Northword",
+  "license": "MIT",
   "packageManager": "pnpm@10.11.0",
+  "files": [
+    "generated-schemas/merged"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "devDependencies": {
     "nodemon": "^3.1.10"
   },
