@@ -81,16 +81,18 @@ VS Code settings (`.vscode/settings.json`):
 
 ## Contributing
 
-1. Checkout (with submodule init)
-2. `pnpm i`: Installs dependencies and automatically applies patches
-3. `pnpm dev`: Starts a file watcher that automatically runs `pnpm build` when files change
-4. `pnpm build`: Converts RNC to RNG and saves modifications to patches
-5. `pnpm link`: Run `pnpm link ../csl-m-schems-rng` in your `csl-style` repo to test changes
+1. Install Node.js and Java 21
+2. Checkout repo (with submodule init)
+3. `pnpm i`: Installs dependencies and automatically applies patches
+4. `pnpm dev`: Starts a file watcher that automatically runs `pnpm build` when files change
+5. `pnpm build`: Converts RNC to RNG and saves modifications to patches
+6. `pnpm link`: Run `pnpm link ../csl-m-schems-rng` in your `csl-style` repo to test changes
 
    > Note: You need to restart the XML language server after making changes:
    > `Ctrl` + `Shift` + `P` -> `XML: Restart XML Language Server`
 
-6. Commit and open a pull request
+7. Commit and open a pull request
+
     Only commit changes in the main repository.  
     Do not commit changes in submodules — ignore any modifications to submodules.
 
