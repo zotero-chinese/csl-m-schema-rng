@@ -88,6 +88,8 @@
       <a:documentation>Title variables</a:documentation>
       <choice>
         <value>collection-title</value>
+        <!-- 中文 style 仓库规定此变量以实现中英同时输出 -->
+        <value>original-container-title</value>
         <value>container-title</value>
         <value>original-title</value>
         <value>part-title</value>

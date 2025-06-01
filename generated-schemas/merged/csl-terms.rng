@@ -19,6 +19,9 @@
           国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
         -->
         <value>space-et-al</value>
+        <!-- 中英同时输出时需要 -->
+        <value>zh-et-al</value>
+        <value>en-et-al</value>
         <ref name="variables.names">
           <a:documentation>Contributor roles</a:documentation>
         </ref>

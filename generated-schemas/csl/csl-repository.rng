@@ -149,6 +149,8 @@ text content for cs:rights</a:documentation>
               <value>et-al</value>
               <value>and others</value>
               <value>space-et-al</value>
+              <value>zh-et-al</value>
+              <value>en-et-al</value>
             </choice>
           </attribute>
         </optional>

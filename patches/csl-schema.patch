@@ -1,5 +1,5 @@
 diff --git a/schemas/styles/csl-repository.rnc b/schemas/styles/csl-repository.rnc
-index 5a961df..2f75bfe 100644
+index 5a961df..97132be 100644
 --- a/schemas/styles/csl-repository.rnc
 +++ b/schemas/styles/csl-repository.rnc
 @@ -102,7 +102,9 @@ include "csl.rnc" {
@@ -9,15 +9,15 @@ index 5a961df..2f75bfe 100644
 -      attribute term { "et-al" | "and others" }?,
 +      # zotero-chinese/styles 自定义的术语
 +      # 国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
-+      attribute term { "et-al" | "and others" | "space-et-al" }?,
++      attribute term { "et-al" | "and others" | "space-et-al" | "zh-et-al" | "en-et-al" }?,
        font-formatting
      }
  }
 diff --git a/schemas/styles/csl-terms.rnc b/schemas/styles/csl-terms.rnc
-index 93f3fc5..1d373c8 100644
+index 93f3fc5..1f82978 100644
 --- a/schemas/styles/csl-terms.rnc
 +++ b/schemas/styles/csl-terms.rnc
-@@ -8,6 +8,16 @@ div {
+@@ -8,6 +8,19 @@ div {
      | terms.gender-variants
      | terms.locator
      | item-types
@@ -30,10 +30,26 @@ index 93f3fc5..1d373c8 100644
 +    # zotero-chinese/styles 自定义的术语
 +    # 国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
 +    | "space-et-al"
++    # 中英同时输出时需要
++    | "zh-et-al"
++    | "en-et-al"
 +
      | 
        ## Contributor roles
        variables.names
+diff --git a/schemas/styles/csl-variables.rnc b/schemas/styles/csl-variables.rnc
+index fe66d5e..8288639 100644
+--- a/schemas/styles/csl-variables.rnc
++++ b/schemas/styles/csl-variables.rnc
+@@ -74,6 +74,8 @@ div {
+   ## Title variables
+   variables.titles =
+     "collection-title"
++    # 中文 style 仓库规定此变量以实现中英同时输出
++    | "original-container-title"
+     | "container-title"
+     | "original-title"
+     | "part-title"
 diff --git a/schemas/styles/csl.rnc b/schemas/styles/csl.rnc
 index c768055..7dfbbf6 100644
 --- a/schemas/styles/csl.rnc

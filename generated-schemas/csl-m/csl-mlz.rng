@@ -535,6 +535,16 @@ or at or below a max value</a:documentation>
           </list>
         </attribute>
       </optional>
+      <optional>
+        <!-- https://citeproc-js.readthedocs.io/en/latest/csl-m/index.html#default-locale-sort-extension -->
+        <attribute name="default-locale-sort">
+          <list>
+            <oneOrMore>
+              <data type="language"/>
+            </oneOrMore>
+          </list>
+        </attribute>
+      </optional>
     </define>
     <define name="condition">
       <a:documentation>Add conditions, allow "type" on "variable", limit "position" to one
@@ -1145,6 +1155,7 @@ or at or below a max value</a:documentation>
     <define name="terms.locator.testable" combine="choice">
       <a:documentation>Add locator terms</a:documentation>
       <choice>
+        <ref name="terms.locator"/>
         <value>Chapter</value>
         <value>Section</value>
         <value>article</value>
