@@ -13,6 +13,7 @@ This repository automatically converts [CSL schema](https://github.com/citation-
 │   └── ci.yml                # GitHub Actions workflow: auto-convert .rnc → .rng
 ├── csl-m-schema/             # Git submodule from Juris-M/schema containing .rnc schema files
 ├── csl-schema/               # Git submodule from citation-style-language/schema containing .rnc schema files
+├── patches/                  # Patches to CSL schema and CSL-M schema
 ├── generated-schemas/        # Auto-generated .rng schema files used by vscode-xml
 |   |-- csl-m
 |   |-- csl
@@ -77,6 +78,21 @@ VS Code settings (`.vscode/settings.json`):
   ],
 }
 ```
+
+## Contributing
+
+1. Checkout (with submodule init)
+2. `pnpm i`: Installs dependencies and automatically applies patches
+3. `pnpm dev`: Starts a file watcher that automatically runs `pnpm build` when files change
+4. `pnpm build`: Converts RNC to RNG and saves modifications to patches
+5. `pnpm link`: Run `pnpm link ../csl-m-schems-rng` in your `csl-style` repo to test changes
+
+   > Note: You need to restart the XML language server after making changes:
+   > `Ctrl` + `Shift` + `P` -> `XML: Restart XML Language Server`
+
+6. Commit and open a pull request
+    Only commit changes in the main repository.  
+    Do not commit changes in submodules — ignore any modifications to submodules.
 
 ## 📝 License
 
