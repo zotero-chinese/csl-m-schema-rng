@@ -143,6 +143,10 @@
         <value>status</value>
         <value>URL</value>
         <value>year-suffix</value>
+        <!-- 心理学报要需要这些字段 -->
+        <value>original-status</value>
+        <value>original-genre</value>
+        <value>original-issue</value>
       </choice>
     </define>
   </div>

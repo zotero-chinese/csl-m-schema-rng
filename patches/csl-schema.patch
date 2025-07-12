@@ -38,7 +38,7 @@ index 93f3fc5..1f82978 100644
        ## Contributor roles
        variables.names
 diff --git a/schemas/styles/csl-variables.rnc b/schemas/styles/csl-variables.rnc
-index fe66d5e..8288639 100644
+index fe66d5e..5469c98 100644
 --- a/schemas/styles/csl-variables.rnc
 +++ b/schemas/styles/csl-variables.rnc
 @@ -74,6 +74,8 @@ div {
@@ -50,6 +50,15 @@ index fe66d5e..8288639 100644
      | "container-title"
      | "original-title"
      | "part-title"
+@@ -125,4 +127,8 @@ div {
+     | "status"
+     | "URL"
+     | "year-suffix"
++    # 心理学报要需要这些字段
++    | "original-status"
++    | "original-genre"
++    | "original-issue"
+ }
 diff --git a/schemas/styles/csl.rnc b/schemas/styles/csl.rnc
 index c768055..7dfbbf6 100644
 --- a/schemas/styles/csl.rnc
