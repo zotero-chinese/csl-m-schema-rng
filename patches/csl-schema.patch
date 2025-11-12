@@ -1,23 +1,21 @@
 diff --git a/schemas/styles/csl-repository.rnc b/schemas/styles/csl-repository.rnc
-index 5a961df..97132be 100644
+index 5a961df..7d05583 100644
 --- a/schemas/styles/csl-repository.rnc
 +++ b/schemas/styles/csl-repository.rnc
-@@ -102,7 +102,9 @@ include "csl.rnc" {
+@@ -102,6 +102,8 @@ include "csl.rnc" {
        
        ## Select the term to use for et-al abbreviation.
        [ a:defaultValue = "et-al" ]
--      attribute term { "et-al" | "and others" }?,
 +      # zotero-chinese/styles 自定义的术语
 +      # 国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
-+      attribute term { "et-al" | "and others" | "space-et-al" | "zh-et-al" | "en-et-al" }?,
+       attribute term { "et-al" | "and others" }?,
        font-formatting
      }
- }
 diff --git a/schemas/styles/csl-terms.rnc b/schemas/styles/csl-terms.rnc
-index 93f3fc5..1f82978 100644
+index 93f3fc5..a1a6ed2 100644
 --- a/schemas/styles/csl-terms.rnc
 +++ b/schemas/styles/csl-terms.rnc
-@@ -8,6 +8,19 @@ div {
+@@ -8,6 +8,12 @@ div {
      | terms.gender-variants
      | terms.locator
      | item-types
@@ -27,43 +25,62 @@ index 93f3fc5..1f82978 100644
 +    # https://github.com/zotero-chinese/styles/discussions/439
 +    | "citation-range-delimiter"
 +
-+    # zotero-chinese/styles 自定义的术语
-+    # 国标 10.2.2 节要求姓氏与“et al.”“等”之间留适当空隙
-+    | "space-et-al"
-+    # 中英同时输出时需要
-+    | "zh-et-al"
-+    | "en-et-al"
-+
      | 
        ## Contributor roles
        variables.names
 diff --git a/schemas/styles/csl-variables.rnc b/schemas/styles/csl-variables.rnc
-index fe66d5e..5469c98 100644
+index fe66d5e..d6f2fa0 100644
 --- a/schemas/styles/csl-variables.rnc
 +++ b/schemas/styles/csl-variables.rnc
-@@ -74,6 +74,8 @@ div {
+@@ -74,6 +74,10 @@ div {
    ## Title variables
    variables.titles =
      "collection-title"
 +    # 中文 style 仓库规定此变量以实现中英同时输出
 +    | "original-container-title"
++    | "original-container-title-short"
++    | "original-event-title"
      | "container-title"
      | "original-title"
      | "part-title"
-@@ -125,4 +127,8 @@ div {
+@@ -125,4 +129,13 @@ div {
      | "status"
      | "URL"
      | "year-suffix"
-+    # 心理学报要需要这些字段
-+    | "original-status"
-+    | "original-genre"
-+    | "original-issue"
++    # 《法学引注手册》需要著录朝代或国籍
++    | "dynasty"
++    | "nationality"
++    # 中文文献对应的英文翻译
++    | "original-event-place"  # 会议地点
++    | "original-genre"  # 学位论文类型
++    | "original-issue"  # 增刊
++    | "original-jurisdiction"  # 专利国别
++    | "original-status"  # 出版状态（如“in press”）
  }
 diff --git a/schemas/styles/csl.rnc b/schemas/styles/csl.rnc
-index c768055..7dfbbf6 100644
+index c768055..42d18cf 100644
 --- a/schemas/styles/csl.rnc
 +++ b/schemas/styles/csl.rnc
-@@ -362,7 +362,9 @@ div {
+@@ -44,6 +44,7 @@ div {
+       (style.locale*
+        & style.macro*
+        & style.citation
++       & style.intext?
+        & style.bibliography?)
+     }
+   dependent-style.style =
+@@ -342,6 +343,10 @@ div {
+     
+     ## Use to describe the formatting of citations.
+     element cs:citation { citation.options, sort?, citation.layout }
++  style.intext =
++    
++    ## Use to describe the formatting of citations.
++    element cs:intext { citation.options, sort?, citation.layout }
+   style.bibliography =
+     
+     ## Use to describe the formatting of the bibliography.
+@@ -362,7 +367,9 @@ div {
    rendering-element.names =
      element cs:names {
        names.attributes,

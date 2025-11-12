@@ -48,6 +48,9 @@
           </zeroOrMore>
           <ref name="style.citation"/>
           <optional>
+            <ref name="style.intext"/>
+          </optional>
+          <optional>
             <ref name="style.bibliography"/>
           </optional>
         </interleave>
@@ -605,6 +608,16 @@ or outside (default) the closing quotation mark.</a:documentation>
     <a:documentation>cs:citation and cs:bibliography</a:documentation>
     <define name="style.citation">
       <element name="cs:citation">
+        <a:documentation>Use to describe the formatting of citations.</a:documentation>
+        <ref name="citation.options"/>
+        <optional>
+          <ref name="sort"/>
+        </optional>
+        <ref name="citation.layout"/>
+      </element>
+    </define>
+    <define name="style.intext">
+      <element name="cs:intext">
         <a:documentation>Use to describe the formatting of citations.</a:documentation>
         <ref name="citation.options"/>
         <optional>
