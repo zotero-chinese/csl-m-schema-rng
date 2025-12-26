@@ -29,7 +29,7 @@ index 93f3fc5..a1a6ed2 100644
        ## Contributor roles
        variables.names
 diff --git a/schemas/styles/csl-variables.rnc b/schemas/styles/csl-variables.rnc
-index fe66d5e..d6f2fa0 100644
+index fe66d5e..300e2b6 100644
 --- a/schemas/styles/csl-variables.rnc
 +++ b/schemas/styles/csl-variables.rnc
 @@ -74,6 +74,10 @@ div {
@@ -43,7 +43,15 @@ index fe66d5e..d6f2fa0 100644
      | "container-title"
      | "original-title"
      | "part-title"
-@@ -125,4 +129,13 @@ div {
+@@ -96,6 +100,7 @@ div {
+     | "call-number"
+     | "citation-key"
+     | "citation-label"
++    | "CSTR"
+     | "dimensions"
+     | "division"
+     | "DOI"
+@@ -125,4 +130,13 @@ div {
      | "status"
      | "URL"
      | "year-suffix"
@@ -58,7 +66,7 @@ index fe66d5e..d6f2fa0 100644
 +    | "original-status"  # 出版状态（如“in press”）
  }
 diff --git a/schemas/styles/csl.rnc b/schemas/styles/csl.rnc
-index c768055..42d18cf 100644
+index c768055..afc968e 100644
 --- a/schemas/styles/csl.rnc
 +++ b/schemas/styles/csl.rnc
 @@ -44,6 +44,7 @@ div {
@@ -74,7 +82,7 @@ index c768055..42d18cf 100644
      ## Use to describe the formatting of citations.
      element cs:citation { citation.options, sort?, citation.layout }
 +  style.intext =
-+    
++
 +    ## Use to describe the formatting of citations.
 +    element cs:intext { citation.options, sort?, citation.layout }
    style.bibliography =

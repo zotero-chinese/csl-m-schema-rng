@@ -116,6 +116,7 @@
         <value>call-number</value>
         <value>citation-key</value>
         <value>citation-label</value>
+        <value>CSTR</value>
         <value>dimensions</value>
         <value>division</value>
         <value>DOI</value>
